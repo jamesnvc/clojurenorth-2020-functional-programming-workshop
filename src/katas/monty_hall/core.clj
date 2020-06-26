@@ -24,9 +24,7 @@
   [strategy]
   (->> (for [_ (range 1000)]
          (simulate-one strategy))
-       (group-by identity)
-       (map (fn [[k v]] [k (count v)]))
-       (into {})))
+       frequencies))
 
 (defn simulate
   []
@@ -42,8 +40,7 @@
 (defn display-results
   [{:keys [stay switch]}]
   (println "Stay strategy won " (display-result stay) " of the time")
-  (println "Switch strategy won " (display-result switch) " of the time")
-  )
+  (println "Switch strategy won " (display-result switch) " of the time"))
 
 (comment
   (simulate)
