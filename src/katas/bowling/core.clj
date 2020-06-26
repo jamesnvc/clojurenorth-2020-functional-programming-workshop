@@ -71,9 +71,7 @@
   (->> (concat rolls [0 0 0 0]) ; pad the end, so we can always take enough frames
        rolls->frames
        (partition 3 1) ; need up to two frames of look-ahead
-       (map-indexed vector) ; add index to count frame # (bonus frames are different)
-       (take-while (comp (partial > 10) first))
-       (map second)
+       (take 10) ; add index to count frame # (bonus frames are different)
        (map frame-score)
        (reduce + 0)))
 
